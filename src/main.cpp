@@ -20,11 +20,12 @@ int main(int argc, const char * argv[]) {
     while (reader->hasContent()) {
         pair<string,string> p = reader->readLine();
         configurations[p.first] = p.second;
+        cout << "{" << p.first << "} {" << p.second << "}\n";
     }
-    
+
     string cod = configurations["COD"];
     int populationSize = stoi(configurations["POP"]);
-            
+
     vector<Individual<int>*> intRandPopulation(populationSize);
     vector<Individual<int>*> binaryPopulation(populationSize);
     vector<Individual<double>*> doubleRandPopulation(populationSize);
