@@ -11,10 +11,10 @@ private:
     int size;
     T lowerBound;
     T upperBound;
-    bool isPemutation;
+    bool isPermutation;
     std::vector<int> permutationSequence;
 public:
-    Individual(int chromoSize, T lowerBound = 0, T upperBound = 1, bool isPemutation = false);
+    Individual(int chromoSize, T lowerBound = 0, T upperBound = 1, bool isPermutation = false);
     void generate();
     T* getChromosome(){
         return this->chromosome;
@@ -22,8 +22,8 @@ public:
     int getSize(){
         return this->size;
     }
-    bool isPermutation(){
-        return this->isPemutation;
+    bool isPerm(){
+        return this->isPermutation;
     }
     std::vector<int> getPermutationSequence(){
         return this->permutationSequence;
@@ -49,8 +49,8 @@ Individual<T>::Individual(int chromoSize, T lowerBound , T upperBound, bool isPe
     this->size = chromoSize;
     this->lowerBound = lowerBound;
     this->upperBound = upperBound;
-    this->isPemutation = isPemutation;
-    if(this->isPemutation){
+    this->isPermutation = isPermutation;
+    if(this->isPermutation){
         for(int i=this->lowerBound; i<=this->upperBound; i++){
             this->permutationSequence.push_back(i);
         }
@@ -62,7 +62,7 @@ template <>
 void Individual<int>::generate(){
     std::random_device rand_dev;
     std::mt19937 generator(rand_dev());
-    if(this->isPemutation){
+    if(this->isPermutation){
         std::vector<int> sequence= this->getPermutationSequence();
         std::random_shuffle(sequence.begin(),sequence.end());
         std::copy(sequence.begin(), sequence.end(), this->chromosome);
