@@ -53,7 +53,7 @@ int main(int argc, const char * argv[]) {
 
     cout << "intPermutedPopulation = [" << endl;
     for (auto& individual : intPermutedPopulation) {
-        individual = new Individual<int>(10, 0, 10, true);
+        individual = new Individual<int>(11, 0, 10, 1);
         cout << "\t" << *individual << endl;
     }
     cout << "]\n";
