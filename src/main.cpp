@@ -21,12 +21,13 @@ int main(int argc, const char * argv[]) {
         pair<string,string> p = reader->readLine();
         configurations[p.first] = p.second;
     }
-    
+
     string cod = configurations["COD"];
     int populationSize = stoi(configurations["POP"]);
-            
+
     vector<Individual<int>*> intRandPopulation(populationSize);
     vector<Individual<int>*> binaryPopulation(populationSize);
+    vector<Individual<int>*> intPermutedPopulation(populationSize);
     vector<Individual<double>*> doubleRandPopulation(populationSize);
 
     cout << "intRandPopulation = [" << endl;
@@ -46,6 +47,13 @@ int main(int argc, const char * argv[]) {
     cout << "doubleRandPopulation = [" << endl;
     for (auto& individual : doubleRandPopulation) {
         individual = new Individual<double>(10, 0, 10, false);
+        cout << "\t" << *individual << endl;
+    }
+    cout << "]\n";
+
+    cout << "intPermutedPopulation = [" << endl;
+    for (auto& individual : intPermutedPopulation) {
+        individual = new Individual<int>(10, 0, 10, true);
         cout << "\t" << *individual << endl;
     }
     cout << "]\n";
