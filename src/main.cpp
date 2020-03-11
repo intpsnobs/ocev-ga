@@ -19,6 +19,7 @@ int main(int argc, const char * argv[]) {
 
     while (reader->hasContent()) {
         pair<string,string> p = reader->readLine();
+        if (p.first == "" || p.second == "") continue;
         configurations[p.first] = p.second;
         cout << "{" << p.first << "} {" << p.second << "}\n";
     }
