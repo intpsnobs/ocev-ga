@@ -1,0 +1,7 @@
+COD = ?
+POP=10	
+D=10		
+BIN
+INT - Bounds = [-5, 10]
+INT-PERM
+REAL - Bounds = [-10, 10]
