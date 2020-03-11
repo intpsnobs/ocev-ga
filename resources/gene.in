@@ -1,6 +1,6 @@
 COD = ?
-POP=10	
-D=10		
+POP=10
+D=10
 BIN
 INT - Bounds = [-5, 10]
 INT-PERM

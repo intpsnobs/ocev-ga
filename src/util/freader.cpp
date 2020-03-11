@@ -16,14 +16,20 @@ public:
             std::string value;
             std::string fullLine;
             std::getline(this->file, fullLine);
-            std::getline(this->file, token, '=');
-            std::getline(this->file, value);
+            std::size_t it = fullLine.find("=");
+            if (it != std::string::npos) {
+                token = fullLine.substr(0, it);
+                value = fullLine.substr(++it, fullLine.size());
+            } else {
+                token = fullLine;
+                value = fullLine;
+            }
             token.erase(std::remove_if(token.begin(), token.end(), ::isspace), token.end());
             value.erase(std::remove_if(value.begin(), value.end(), ::isspace), value.end());
             return {token,value};
         } else {
             return {"",""};
-        }   
+        }
     }
 
     bool hasContent() {
