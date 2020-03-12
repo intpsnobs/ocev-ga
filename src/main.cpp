@@ -1,8 +1,13 @@
 #include <bits/stdc++.h>
-#include "util/freader.cpp"
-#include "gene/individual.cpp"
 
 using namespace std;
+
+#include "util/freader.cpp"
+#include "allele/Allele.cpp"
+#include "allele/RandomInteger.cpp"
+#include "allele/RandomDouble.cpp"
+#include "allele/RandomBinary.cpp"
+#include "allele/PermutedInteger.cpp"
 
 int main(int argc, const char * argv[]) {
 
@@ -21,44 +26,19 @@ int main(int argc, const char * argv[]) {
         pair<string,string> p = reader->readLine();
         if (p.first == "" || p.second == "") continue;
         configurations[p.first] = p.second;
-        cout << "{" << p.first << "} {" << p.second << "}\n";
     }
 
     string cod = configurations["COD"];
     int populationSize = stoi(configurations["POP"]);
 
-    vector<Individual<int>*> intRandPopulation(populationSize);
-    vector<Individual<int>*> binaryPopulation(populationSize);
-    vector<Individual<int>*> intPermutedPopulation(populationSize);
-    vector<Individual<double>*> doubleRandPopulation(populationSize);
-
-    cout << "intRandPopulation = [" << endl;
-    for (auto& individual : intRandPopulation) {
-        individual = new Individual<int>(10, 0, 10, false);
-        cout << "\t" << *individual << endl;
-    }
-    cout << "]\n";
-
-    cout << "binaryPopulation = [" << endl;
-    for (auto& individual : binaryPopulation) {
-        individual = new Individual<int>(10);
-        cout << "\t" << *individual << endl;
-    }
-    cout << "]\n";
-
-    cout << "doubleRandPopulation = [" << endl;
-    for (auto& individual : doubleRandPopulation) {
-        individual = new Individual<double>(10, 0, 10, false);
-        cout << "\t" << *individual << endl;
-    }
-    cout << "]\n";
-
-    cout << "intPermutedPopulation = [" << endl;
-    for (auto& individual : intPermutedPopulation) {
-        individual = new Individual<int>(11, 0, 10, 1);
-        cout << "\t" << *individual << endl;
-    }
-    cout << "]\n";
+    RandomInteger randomInteger(10,0,10);
+    cout<<randomInteger<<endl;
+    RandomDouble randomDouble(10,0,10);
+    cout<<randomDouble<<endl;
+    RandomBinary randomBinary(10);
+    cout<<randomBinary<<endl;
+    PermutedInteger permutedInteger(10, 1, 10);
+    cout<<permutedInteger<<endl;
 
     return 0;
 }
