@@ -3,42 +3,40 @@
 using namespace std;
 
 #include "util/freader.cpp"
-#include "allele/Allele.cpp"
-#include "allele/RandomInteger.cpp"
-#include "allele/RandomDouble.cpp"
-#include "allele/RandomBinary.cpp"
-#include "allele/PermutedInteger.cpp"
-
+#include "../include/Allele.h"
 int main(int argc, const char * argv[]) {
 
-    if (argc < 2) {
-        cerr << "Usage: " << argv[0] << " config_file\n";
-        exit(0);
-    }
+    PermutedInteger asd(10,20,30);
+    cout<<asd<<endl;
 
-    Freader * reader = new Freader();
+    // if (argc < 2) {
+    //     cerr << "Usage: " << argv[0] << " config_file\n";
+    //     exit(0);
+    // }
 
-    reader->open("resources/gene.in");
+    // Freader * reader = new Freader();
 
-    map<string, string> configurations;
+    // reader->open("resources/gene.in");
 
-    while (reader->hasContent()) {
-        pair<string,string> p = reader->readLine();
-        if (p.first == "" || p.second == "") continue;
-        configurations[p.first] = p.second;
-    }
+    // map<string, string> configurations;
 
-    string cod = configurations["COD"];
-    int populationSize = stoi(configurations["POP"]);
+    // while (reader->hasContent()) {
+    //     pair<string,string> p = reader->readLine();
+    //     if (p.first == "" || p.second == "") continue;
+    //     configurations[p.first] = p.second;
+    // }
 
-    RandomInteger randomInteger(10,0,10);
-    cout<<randomInteger<<endl;
-    RandomDouble randomDouble(10,0,10);
-    cout<<randomDouble<<endl;
-    RandomBinary randomBinary(10);
-    cout<<randomBinary<<endl;
-    PermutedInteger permutedInteger(10, 1, 10);
-    cout<<permutedInteger<<endl;
+    // string cod = configurations["COD"];
+    // int populationSize = stoi(configurations["POP"]);
+
+    // RandomInteger randomInteger(10,0,10);
+    // cout<<randomInteger<<endl;
+    // RandomDouble randomDouble(10,0,10);
+    // cout<<randomDouble<<endl;
+    // RandomBinary randomBinary(10);
+    // cout<<randomBinary<<endl;
+    // PermutedInteger permutedInteger(10, 1, 10);
+    // cout<<permutedInteger<<endl;
 
     return 0;
 }
