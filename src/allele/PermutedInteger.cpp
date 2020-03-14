@@ -1,11 +1,10 @@
 #include "../../include/Allele.h"
 
-
-
 PermutedInteger::PermutedInteger(int genSize, int lowerBound, int upperBound)
 :Allele(genSize, lowerBound, upperBound){
     this->generate();
 }
+
 void PermutedInteger::generate(){
     std::vector<int> sequence;
 

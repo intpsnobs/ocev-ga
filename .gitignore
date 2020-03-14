@@ -1,3 +1,9 @@
-bin/main
+bin/*
+!bin/.gitkeep
+
+obj/*
+!obj/.gitkeep
+
 .vscode
 .ccls-cache
+*.d
