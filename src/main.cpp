@@ -1,13 +1,9 @@
 #include <bits/stdc++.h>
 
-using namespace std;
+#include "../include/Freader.h"
+#include "../include/Allele.h"
 
-#include "util/freader.cpp"
-#include "allele/Allele.cpp"
-#include "allele/RandomInteger.cpp"
-#include "allele/RandomDouble.cpp"
-#include "allele/RandomBinary.cpp"
-#include "allele/PermutedInteger.cpp"
+using namespace std;
 
 int main(int argc, const char * argv[]) {
 
