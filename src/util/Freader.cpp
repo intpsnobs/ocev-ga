@@ -2,12 +2,9 @@
 #include <iostream>
 #include <algorithm>
 
-void Freader::open(std::string fName) {
-    try {
-        this->file.open(fName, std::fstream::in | std::fstream::out);
-    } catch(std::exception const& e) {
-        std::cout << "Error on Freader_open " << e.what() << std::endl;
-    }
+bool Freader::open(std::string fName) {
+    this->file.open(fName, std::fstream::in | std::fstream::out);
+    return this->file.is_open();    
 }
 
 std::pair<std::string,std::string> Freader::readLine() {
@@ -34,4 +31,8 @@ std::pair<std::string,std::string> Freader::readLine() {
 
 bool Freader::hasContent() {
     return !this->file.eof();
+}
+
+bool Freader::isOpen() {
+    return file.is_open();
 }
