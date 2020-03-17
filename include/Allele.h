@@ -8,7 +8,7 @@
 #include <algorithm>
 
 template<typename T>
-class Allele{
+class Allele {
     public:
         int genSize;
         T lowerBound;
@@ -34,10 +34,7 @@ class Allele{
             out << "]";
             return out;
         }
-
-
 };
-
 
 class PermutedInteger: public Allele<int>{
     public:

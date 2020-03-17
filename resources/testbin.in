@@ -1,0 +1,5 @@
+COD = REAL
+POP = 10
+DIM = 10
+D = 8
+REAL = [-5, 5]

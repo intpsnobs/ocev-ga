@@ -1,4 +1,4 @@
-CXXFLAGS = -std=c++11 -Wall
+CXXFLAGS = -std=c++17 -Wall
 LDFLAGS = -g
 
 SRC :=  $(shell find src -name *.cpp)
