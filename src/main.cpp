@@ -1,17 +1,20 @@
 #include <bits/stdc++.h>
+#include <variant>
 
 #include "../include/Freader.h"
 #include "../include/Allele.h"
 #include "../include/Validator.h"
 #include "../include/Color.h"
 #include "../include/util.cpp"
+#include "../include/genetic.cpp"
+
 
 using namespace std;
 
-#define DEF 0   // Reset
-#define ERR 41  // Red bg
-#define LOG 42  // Green bg
-#define WAR 43  // Yellow bg
+template<typename T>
+void loop(T ** population) {
+
+}
 
 int main(int argc, const char * argv[]) {
 
@@ -31,62 +34,38 @@ int main(int argc, const char * argv[]) {
         exit(1);
     }
 
-    map<string, string> * configurations = new map<string, string>();
+    map<string, string> configurations;// = new map<string, string>();
 
     while (reader->hasContent()) {
         pair<string,string> p = reader->readLine();
         if (p.first == "" || p.second == "") continue;
-        (*configurations)[p.first] = p.second;
-        cout << p.first << " " << p.second << "\n";
+        configurations[p.first] = p.second;
     }
 
-    string cod = (*configurations)["COD"];
-    int populationSize = stoi((*configurations)["POP"]);
-    int dimension = stoi((*configurations)["D"]);
+    string cod = configurations["COD"];
+    int populationSize = stoi(configurations["POP"]);
+
+    PopulationType genericPopulation = startPopulation[cod](configurations); 
     
-    if (configurations->find("BIN") != configurations->end()) {
-        RandomBinary ** population = (RandomBinary**)malloc(sizeof(RandomBinary*) * populationSize);
-        for (int i=0; i<populationSize; i++) {
-            population[i] = new RandomBinary(dimension);
-        }
-        
-    } else if (configurations->find("REAL") != configurations->end()) {
+    auto rb = get_if<RandomBinary**>(&genericPopulation);
+    auto rd = get_if<RandomDouble**>(&genericPopulation);
+    auto ri = get_if<RandomInteger**>(&genericPopulation);
+    auto pi = get_if<PermutedInteger**>(&genericPopulation);
 
-        vector<string> range = split((*configurations)["REAL"], ",");
-
-        if (range.size() != 2) {
-            cerr << clr->setColor(ERR) << "FATAL:\t" << clr->setColor(DEF) << "Bounds could not be defined\n\tCheck configuration file and try again.\n";
-            delete clr;
-            exit(1);
-        }
-
-        double bounds[2] = {stod(range[0]), stod(range[1])};
-
-        if (bounds[1] <= bounds[0]) {
-            char c;
-            cout << clr->setColor(WAR) << "WARN:\t" << clr->setColor(DEF) << "UpperBound <= LowerBound continue? (UB and LB will swap)\n(y/n)";
-            cin >> c;
-            if (c != 'y') {
-                cerr << clr->setColor(ERR) << "FATAL:\t" << clr->setColor(DEF) << "Bounds could not be defined\n\tCheck configuration file and try again.\n";
-                exit(1);
-            }
-            swap<double>(&bounds[0], &bounds[1]);
-        }
-
-        RandomDouble ** population = (RandomDouble**)malloc(sizeof(RandomDouble*) * populationSize);
-        for (int i=0; i<populationSize; i++) {
-            population[i] = new RandomDouble(dimension, bounds[0], bounds[1]);
-        }
-
-    } else if (configurations->find("INT") != configurations->end()) {
-        // TODO bo muça vei
+    if (rb != nullptr) {
+        GA<RandomBinary>(*rb, populationSize);
+    } else if (rd != nullptr) {
+        GA<RandomDouble>(*rd, populationSize);
+    } else if (ri != nullptr) {
+        GA<RandomInteger>(*ri, populationSize);
+    } else if (pi != nullptr) {
+        GA<PermutedInteger>(*pi, populationSize);
+    } else {
+        cerr << clr->setColor(ERR) << "FATAL:\t" << clr->setColor(DEF) << "Could not start Genetic Algorithm\n";
     }
-
-
-
+    
     delete clr;
     delete reader;
-    delete configurations;
     
     // RandomInteger randomInteger(10,0,10);
     // cout<<randomInteger<<endl;

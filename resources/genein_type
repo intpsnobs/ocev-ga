@@ -1,0 +1,11 @@
+COD = {
+    BIN
+    INT-Bounds = [lowerBound, upperBound]
+    INT-PERM {
+        D = permuteAmount [0, D)
+    }
+    REAL-Bounds = [lowerBound, upperBound]
+}
+
+POP = populationSize
+DIM = chromosomeSize
